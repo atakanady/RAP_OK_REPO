@@ -1,0 +1,14 @@
+managed implementation in class zbp_fi_df_tos unique;
+strict ( 2 );
+
+define behavior for ZFI_DF_TOS //alias <alias_name>
+persistent table zfi_db_tos
+lock master
+authorization master ( instance )
+//etag master <field_name>
+{
+  create;
+  update;
+  delete;
+  field ( readonly ) Sirketkodu, Bankannumarasi;
+}

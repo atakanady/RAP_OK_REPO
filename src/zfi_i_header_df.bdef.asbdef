@@ -1,0 +1,117 @@
+managed implementation in class zbp_fi_i_header_df unique;
+strict ( 2 );
+//with draft;
+
+define behavior for ZFI_I_HEADER_DF //alias <alias_name>
+persistent table zfi_db_root
+//draft table zfi_db_root_df
+lock master
+//total etag LastChangedAt
+early numbering
+authorization master ( instance )
+etag master LastChangedAt
+{
+  create;
+  update ( features : global );
+//  delete;
+  field ( readonly ) Paymentorder;
+
+  action ( features : instance ) setAdminted result [1] $self;
+  action ( features : instance ) backAdminted result [1] $self;
+  action ( features : instance ) delete result [1] $self;
+
+
+  determination vcostname on save { create; }
+  determination onCreate on save { create; }
+  validation vcounrty on save { create; }
+
+
+  mapping for zfi_db_root corresponding
+    {
+      Paymentorder     = paymentorder;
+      Payercompany     = payercompany;
+      Used             = is_used;
+      Payercompanyname = payercompanyname;
+      Paymentdate      = paymentdate;
+      Status           = status;
+      Paymenttype      = paymenttype;
+      Processdescription = processdescription;
+      Itemtotal        = itemtotal;
+      Amounttotal      = amounttotal;
+      Userinfo         = userinfo;
+      CreatedBy        = created_by;
+      CreatedAt        = created_at;
+      LastChangedBy    = last_changed_by;
+      LastChangedAt    = last_changed_at;
+      EtagMaster       = etag_master;
+    }
+
+  association _Child { create; }
+}
+
+
+define behavior for ZFI_I_ITEM_DF //alias <alias_name>
+persistent table zfi_db_item
+//draft table zfi_db_item_df
+lock dependent by _Root
+early numbering
+authorization dependent by _Root
+etag master EtagMaster
+{
+  update( features : instance );
+//  delete;
+  field ( readonly : update ) Paymentorder,
+  Paymentline, Currency, CreatedAt,
+  CreatedBy,DBDescription,Description,EtagMaster,Invoicedate,Invoicedeclaration,
+  LastChangedAt,LastChangedBy,Lettercreditref,Paycostdescription,Payeebank,amount,
+  Reference,Paymenttype,Payeenumber, Payeename, Payeecountry, Payeeidentifier, Payeebankname,
+  Payeeiban, Payeebankaccount, Payeeswift, Paymentcost, Roww ;
+
+  determination onCreateItem on save { create; }
+  validation vcounrtyitem on save { create; }
+  validation vcurrencyitem on save { create; }
+
+
+  determination onCreate on save { create; }
+
+
+
+  mapping for zfi_db_item corresponding
+    {
+      Paymentorder       = paymentorder;
+      Paymentline        = paymentline;
+      Paymenttype        = paymenttype;
+      Payercompany       = payercompany;
+      Payercompanyname   = payercompanyname;
+      Paymentdate        = paymentdate;
+      Reference          = reference;
+      Description        = description;
+      Amount             = amount;
+      Currency           = currency;
+      Payeenumber        = payeenumber;
+      Payeename          = payeename;
+      Payeecountry       = payeecountry;
+      Payeeidentifier    = payeeidentifier;
+      Payeeiban          = payeeiban;
+      Payeebank          = payeebank;
+      Payeebankaccount   = payeebankaccount;
+      Payeeswift         = payeeswift;
+      Paymentcost        = paymentcost;
+      Roww               = roww;
+      Invoicedate        = invoicedate;
+      Invoicedeclaration = invoicedeclaration;
+      Lettercreditref    = lettercreditref;
+      Payeebankname      = payeebankname;
+      Paycostdescription = paycostdescription;
+      CreatedBy          = created_by;
+      CreatedAt          = created_at;
+      LastChangedBy      = last_changed_by;
+      LastChangedAt      = last_changed_at;
+      EtagMaster         = etag_master;
+      BankInfo           = bankinformation;
+      SelectedIban       = selectediban;
+    }
+
+
+  association _Root;
+}

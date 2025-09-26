@@ -1,0 +1,30 @@
+managed implementation in class zbp_fi_i_docs unique;
+strict ( 2 );
+
+define behavior for ZFI_I_DOCS //alias <alias_name>
+persistent table zfi_db_doc
+lock master
+authorization master ( instance )
+//etag master <field_name>
+{
+  create;
+  update;
+  delete;
+
+  determination onSave on save { create; }
+
+  mapping for zfi_db_doc corresponding
+    {
+      Header      = header;
+      Object       = obj_id;
+      RepoId      = repoid;
+      Item        = item;
+      Paymenttype = paymenttype;
+      Base64      = base64;
+      FileName    = filename;
+      Sizes       = ssize;
+      Type        = type;
+    }
+
+
+}

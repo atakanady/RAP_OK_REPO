@@ -1,0 +1,11 @@
+@EndUserText.label: 'Service definition for PYBATCH'
+define service ZFI_PYBATCH_SD {
+  expose ZFI_PYMBATCH_BANK           as PYMBATCH_Bank;
+  expose ZFI_PYMBATCH_LINE           as PYMBATCH_Line;
+  expose ZFI_I_ITEM_DF2              as Item;
+  expose ZFI_I_ITEM_DF               as Items;
+  expose ZFI_I_HouseBankAccountStdVH as I_HouseBankAccountStdVH;
+  expose ZFI_PAYMENTTD_DF            as I_PaymentType;
+  expose ZFI_AUZATION_BANK           as I_Authorization_Bank;
+  expose ZFI_I_HEADER_RO             as Header;
+}

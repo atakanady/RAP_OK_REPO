@@ -1,0 +1,30 @@
+
+CLASS zcl_abapgit_frontend_services DEFINITION
+  PUBLIC
+  FINAL
+  CREATE PUBLIC .
+
+
+
+  PUBLIC SECTION.
+
+    INTERFACES if_oo_adt_classrun.
+  PROTECTED SECTION.
+  PRIVATE SECTION.
+ENDCLASS.
+
+
+
+CLASS ZCL_ABAPGIT_FRONTEND_SERVICES IMPLEMENTATION.
+
+
+  METHOD if_oo_adt_classrun~main.
+
+
+
+
+ COMMIT WORK.
+
+
+  ENDMETHOD.
+ENDCLASS.

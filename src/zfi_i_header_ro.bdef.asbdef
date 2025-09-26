@@ -1,0 +1,34 @@
+managed implementation in class zbp_fi_i_header_ro unique;
+strict ( 2 );
+
+define behavior for ZFI_I_HEADER_RO //alias <alias_name>
+persistent table zfi_db_root
+lock master
+authorization master ( instance )
+//etag master <field_name>
+{
+  //  create;
+  update ( features : global );
+  //  delete;
+  field ( readonly ) Paymentorder;
+
+  action ( features : instance ) setAdminted result [1] $self;
+  action ( features : instance ) backAdminted parameter ZFI_UNDOACTION_AE result [1] $self;
+
+  action ( features : instance ) undo result [1] $self;
+
+
+  association _Child;
+}
+
+define behavior for ZFI_I_ITEM_RO //alias <alias_name>
+persistent table zfi_db_item
+lock dependent by _Root
+authorization dependent by _Root
+//etag master <field_name>
+{
+  update ( features : global );
+  //  delete;
+  field ( readonly ) Paymentorder;
+  association _Root;
+}

@@ -1,0 +1,13 @@
+managed implementation in class zbp_fi_df_log unique;
+strict ( 2 );
+
+define behavior for ZFI_DF_LOG //alias <alias_name>
+persistent table zfi_db_log
+lock master
+authorization master ( instance )
+//etag master <field_name>
+{
+  create;
+  update;
+  delete;
+}

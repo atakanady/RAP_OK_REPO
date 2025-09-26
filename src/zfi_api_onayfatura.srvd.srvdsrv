@@ -1,0 +1,4 @@
+@EndUserText.label: 'Service definition for API Fatura Onay Dosyası'
+define service ZFI_API_ONAYFATURA {
+  expose ZFI_I_ONAYFATURA as Fatura;
+}

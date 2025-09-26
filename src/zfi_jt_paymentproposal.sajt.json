@@ -1,0 +1,23 @@
+{
+  "formatVersion": "1",
+  "header": {
+    "description": "Payment Proposal Template",
+    "originalLanguage": "en",
+    "abapLanguageVersion": "cloudDevelopment"
+  },
+  "generalInformation": {
+    "catalogName": "ZFI_J_PAYMENTPROPOSAL"
+  },
+  "parameters": {
+    "singleValueParameters": [
+      {
+        "name": "P_RunDat",
+        "value": ""
+      },
+      {
+        "name": "P_RunID",
+        "value": ""
+      }
+    ]
+  }
+}

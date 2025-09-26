@@ -1,0 +1,45 @@
+unmanaged implementation in class zbp_fi_api_root unique;
+strict ( 2 );
+//with draft;
+
+define behavior for ZFI_API_ROOT
+late numbering
+lock master
+//total etag LastChangedAt
+authorization master ( instance )
+//draft table zfi_api_root_d
+{
+  create;
+  update;
+  delete;
+
+//  draft action Edit;
+//  draft action Activate;
+//  draft action Discard;
+//  draft action Resume;
+
+//  validation validDate on save { create; update; }
+
+//  draft determine action Prepare{
+//    validation validDate;
+//  }
+
+
+//  field ( readonly ) Paymentorder;
+
+  association _Child { create;}
+}
+
+
+define behavior for ZFI_API_ITEM //alias <alias_name>
+//draft table zfi_api_item_d
+late numbering
+lock dependent by _Root
+authorization dependent by _Root
+//etag master <field_name>
+{
+  update;
+  delete;
+  field ( readonly ) Paymentorder, Paymentline;
+  association _Root;
+}

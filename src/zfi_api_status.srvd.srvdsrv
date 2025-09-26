@@ -1,0 +1,4 @@
+@EndUserText.label: 'Status Değeri değişimi için SD'
+define service ZFI_API_STATUS {
+  expose ZFI_STATUS_MODIF as StatusModif;
+}

@@ -1,0 +1,264 @@
+@Metadata.layer: #CORE
+
+@UI: {
+  headerInfo: {
+    typeName: 'Ödeme Talebi',
+    typeNamePlural: 'Ödeme Talebi',
+    title: {
+        value: 'Payercompanyname',
+        type: #STANDARD
+    },
+    description: {
+        label: 'Kök varlık',
+        type: #STANDARD,
+        value: 'Paymentorder'
+    }
+  }
+}
+@Search.searchable: true
+annotate view ZFI_I_HEADER_RO with
+{
+
+  @UI.facet: [
+
+
+
+         {
+             id: 'PaymentorderID',
+             purpose: #HEADER,
+             type: #DATAPOINT_REFERENCE,
+             position: 10,
+             targetQualifier: 'Paymentorder'
+         },
+         {
+             id: 'PaymentdateID',
+             purpose: #HEADER,
+             type: #DATAPOINT_REFERENCE,
+             position: 20,
+             targetQualifier: 'Paymentdate'
+         },
+         {
+             id: 'PayercompanyID',
+             purpose: #HEADER,
+             type: #DATAPOINT_REFERENCE,
+             position: 30,
+             targetQualifier: 'Payercompany'
+         },
+
+         {
+             id: 'PayercompanynameID',
+             purpose: #HEADER,
+             type: #DATAPOINT_REFERENCE,
+             position: 40,
+             targetQualifier: 'Payercompanyname'
+         },
+
+         {
+             id: 'StatusID',
+             purpose: #HEADER,
+             type: #DATAPOINT_REFERENCE,
+             position: 50,
+             targetQualifier: 'Status'
+         },
+         {
+             id: 'StatusdescriptionID',
+             purpose: #HEADER,
+             type: #DATAPOINT_REFERENCE,
+             position: 60,
+             targetQualifier: 'Statusdescription'
+         },
+         {
+             id: 'CreatedByID',
+             purpose: #HEADER,
+             type: #DATAPOINT_REFERENCE,
+             position: 70,
+             targetQualifier: 'CreatedBy'
+         },
+         {
+             id: 'olusturmatrhID',
+             purpose: #HEADER,
+             type: #DATAPOINT_REFERENCE,
+             position: 80,
+             targetQualifier: 'olusturmatrh'
+         },
+
+          {
+             id: 'AmounTotalID',
+             purpose: #HEADER,
+             type: #DATAPOINT_REFERENCE,
+             position: 90,
+             targetQualifier: 'Amounttotal'
+         },
+                   {
+             id: 'ItemtotalID',
+             purpose: #HEADER,
+             type: #DATAPOINT_REFERENCE,
+             position: 100,
+             targetQualifier: 'Itemtotal'
+         },
+
+
+
+     {
+      type: #FIELDGROUP_REFERENCE,
+      targetQualifier: 'Header',
+      parentId: 'ZRAP_C_XLSX_Root-Header'
+     },
+     {
+      type: #FIELDGROUP_REFERENCE,
+      targetQualifier: 'Upload',
+      parentId: 'ZRAP_C_XLSX_Root-Header',
+      hidden: #( IsActiveEntity )
+     },
+     {
+      type: #FIELDGROUP_REFERENCE,
+      targetQualifier: 'Changelog',
+      parentId: 'ZRAP_C_XLSX_Root-Change'
+     },
+     {
+      purpose: #STANDARD,
+      id: 'ZFI_I_ITEM_DF',
+      type: #LINEITEM_REFERENCE,
+      targetElement: '_Child'
+      }
+   ]
+
+
+  @Search.defaultSearchElement: true
+  @UI.selectionField: [{ position: 10 }]
+  @UI.lineItem: [{ position: 10, label: 'Ödeme Talebi'}]
+  @UI.dataPoint: { qualifier: 'Paymentorder', title: 'Ödeme Talebi'}
+  @UI.fieldGroup: [ {qualifier: 'Changelog', position: 30, label: 'Ödeme Talebi'}]
+  //  @UI.identification: [{ type: #FOR_ACTION, dataAction: 'onDelDoc', label: 'Onayy' }]
+
+
+  Paymentorder;
+
+  @Consumption.valueHelpDefinition: [{ entity: { name: 'ZI_CompanyCodeVH', element: 'CompanyCode' } }]
+  @UI.selectionField: [{ position: 20 }]
+  @UI.lineItem: [{ position: 20, label: 'Ödeyen Firma'}]
+  @UI.dataPoint: { qualifier: 'Payercompany', title: 'Ödeyen Firma'}
+  @UI.fieldGroup: [ {qualifier: 'Changelog', position: 30, label: 'Ödeyen Firma'} ]
+  Payercompany;
+
+  //  @UI.selectionField: [{ position: 30 }]
+
+
+  @UI.lineItem: [{ position: 30, label: 'Ödeyen Firma Adı'}]
+  @UI.dataPoint: { qualifier: 'Payercompanyname', title: 'Ödeyen Firma Adı'}
+  @UI.fieldGroup: [ {qualifier: 'Changelog', position: 30, label: 'Ödeyen Firma Adı'} ]
+  Payercompanyname;
+
+
+
+  //  @UI.fieldGroup: [ {qualifier: 'Changelog', position: 40, label: 'Ödeyen Firma Adı'} ]
+  //  @UI.lineItem: [ {
+  //  position: 30,
+  //  importance: #MEDIUM,
+  //  label: 'Ödeme Tipi'
+  //  } ]
+  //  @Search.defaultSearchElement: true
+  //  Paymenttype;
+
+  //  @Consumption.filter:{ selectionType: #INTERVAL, multipleSelections: false  }
+  @UI.selectionField: [{ position: 50 }]
+  @UI.fieldGroup: [ {qualifier: 'Changelog', position: 30, label: 'Ödeme Tarihi'} ]
+  @UI.lineItem: [{ position: 30, label: 'Ödeme Tarihi'}]
+  @UI.dataPoint: { qualifier: 'Paymentdate', title: 'Ödeme Tarihi'}
+  Paymentdate;
+
+
+  //  @UI: { lineItem: [ { position: 50, importance: #HIGH, label: 'İşleme Al' }]}
+  @UI.selectionField: [{ position: 60 }]
+  @UI.lineItem: [{ position: 40, label: 'Durum'},
+                  { type: #FOR_ACTION, dataAction: 'setAdminted' , label: 'İşleme Al' },
+                  { type: #FOR_ACTION, dataAction: 'backAdminted', label: 'İşleme Alma' },
+                  { type: #FOR_ACTION, dataAction: 'undo'    , label: 'Geri Al' }]
+  @UI.dataPoint: { qualifier: 'Status', title: 'Durum'}
+  @UI.fieldGroup: [ {qualifier: 'Changelog', position: 30, label: 'Durum'} ]
+  @Consumption.valueHelpDefinition: [{ entity: { name: 'ZFI_I_Status', element: 'Status' } }]
+  Status;
+
+
+
+  //  @UI.lineItem: [{ type: #FOR_ACTION, dataAction: 'delete', label: 'Sil' }]
+  //  Used;
+
+  //  @UI: { lineItem: [ { position: 50, importance: #HIGH, label: 'İşleme Al' }]}
+
+  @UI.lineItem: [{ position: 50, label: 'Durum Açıklaması'}]
+  @UI.dataPoint: { qualifier: 'Statusdescription', title: 'Durum Açıklaması'}
+  @UI.fieldGroup: [ {qualifier: 'Changelog', position: 30, label: 'Durum Açıklaması'} ]
+  Statusdescription;
+
+
+  //  @Consumption.filter:{ selectionType: #INTERVAL, multipleSelections: false  }
+  @UI.selectionField: [{ position: 80 }]
+  @UI.fieldGroup: [ {qualifier: 'Changelog', position: 30, label: 'Oluşturma Tarihi'} ]
+  @UI.lineItem: [{ position: 60, label: 'Oluşturma Tarihi'}]
+  @UI.dataPoint: { qualifier: 'olusturmatrh', title: 'Oluşturma Tarihi'}
+
+  CreatedAt;
+
+  @UI.selectionField: [{ position: 90 }]
+  @UI.fieldGroup: [ {qualifier: 'Changelog', position: 30, label: 'Oluşturan'} ]
+  @UI.lineItem: [{ position: 70, label: 'Oluşturan'}]
+  @UI.dataPoint: { qualifier: 'CreatedBy', title: 'Oluşturan'}
+  @Consumption.valueHelpDefinition: [{ entity: { name: 'ZFI_I_CreatedBy', element: 'CreatedBy' } }]
+  CreatedBy;
+
+
+  //  @Consumption.filter:{ selectionType: #INTERVAL, multipleSelections: false  }
+  @UI.selectionField: [{ position: 100 }]
+  @UI.fieldGroup: [ {
+  qualifier: 'Changelog',
+  position: 30,
+  label: 'Son Değiştiren'
+  } ]
+  @Consumption.valueHelpDefinition: [{ entity: { name: 'ZFI_I_LastChangedBy', element: 'LastChangedBy' } }]
+  LastChangedBy;
+
+
+  //  @Consumption.filter:{ selectionType: #INTERVAL, multipleSelections: false  }
+  @UI.selectionField: [{ position: 110 }]
+  @UI.fieldGroup: [ {
+  qualifier: 'Changelog',
+  position: 40,
+  label: 'Son Değiştirilme Tarihi'
+  } ]
+  LastChangedAt;
+
+
+  //  @UI.lineItem: [{ position: 50, label: 'Durum Açıklaması'}]
+  //  @UI.dataPoint: { qualifier: 'Statusdescription', title: 'Durum Açıklaması'}
+  //  @UI.fieldGroup: [ {qualifier: 'Changelog', position: 30, label: 'Durum Açıklaması'} ]
+
+  @UI.selectionField: [{ position: 120 }]
+
+  @UI.fieldGroup: [ {qualifier: 'Changelog', position: 50, label: 'İşleme Alma Açıklaması'} ]
+  @UI.lineItem: [{ position: 80, label: 'İşleme Alma Açıklaması'}]
+  Processdescription;
+
+//  @UI.selectionField: [{ position: 130 }]
+  @UI.dataPoint: { qualifier: 'Amounttotal', title: 'Toplam Tutar'}
+  @UI.fieldGroup: [ {qualifier: 'Changelog', position: 50, label: 'Toplam Tutar'} ]
+  @UI.lineItem: [{ position: 90, label: 'Toplam Tutar'}]
+  Amounttotal;
+
+//  @UI.selectionField: [{ position: 140 }]
+  @UI.dataPoint: { qualifier: 'Itemtotal', title: 'Toplam Kalem'}
+  @UI.fieldGroup: [ {qualifier: 'Changelog', position: 50, label: 'Toplam Kalem'} ]
+  @UI.lineItem: [{ position: 100, label: 'Toplam Kalem'}]
+  Itemtotal;
+
+  @EndUserText.label: 'Silinme Durumu'
+  Used;
+
+  @EndUserText.label: 'Ödeme Tipi'
+  Paymenttype;
+
+
+  @UI.hidden: true
+  EtagMaster;
+
+}

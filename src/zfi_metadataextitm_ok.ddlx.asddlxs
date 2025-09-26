@@ -1,0 +1,268 @@
+@Metadata.layer: #CORE
+@UI: {
+  headerInfo: {
+    typeName: 'Ödeme Talebi Kalemi',
+    title: { value: 'Paymentorder', type: #STANDARD }
+//    description: { value: 'Description', type: #STANDARD }
+  }
+}
+
+annotate view ZFI_I_ITEM_DF with
+{
+
+  @UI.facet: [
+   {
+    id: 'ZFI_Child',
+    purpose: #STANDARD,
+    type: #COLLECTION
+  },
+
+  //  {
+  //    type: #FIELDGROUP_REFERENCE,
+  //    targetQualifier: 'Header'
+  //
+  //  },
+
+   { id: 'thirdScreen',
+    purpose: #STANDARD,
+    type: #IDENTIFICATION_REFERENCE,
+    label: 'Detay Bilgileri',
+    position: 10}
+
+  ]
+
+  @UI.lineItem: [{
+    position: 10,
+    importance: #MEDIUM,
+    label: 'Ödeme talebi'
+  }]
+
+  Paymentorder;
+
+
+  @UI.lineItem: [{ position: 30, label: 'Ödeyen firma adı' }]
+  Payercompanyname;
+
+  @UI.lineItem: [{ position: 20, label: 'Ödeme Talebi Kalemi' }]
+  @UI.identification: [ { position: 10, label: 'Ödeme Talebi Kalemi' } ]
+
+  Paymentline;
+
+
+  @UI.identification: [ { position: 10, label: 'Ödeme Tipi' } ]
+  @UI.lineItem: [{
+    position: 40,
+    label: 'Ödeme tipi'
+  }]
+  Paymenttype;
+
+
+  // Payment type
+  @UI.identification: [ { position: 10, label: 'Ödeme Tipi Açıklaması' } ]
+  @UI.lineItem: [{
+    position: 50,
+    importance: #MEDIUM,
+    label: 'Ödeme Tipi Açıklaması'
+  }]
+  DBDescription;
+
+  // Reference details
+  @UI.identification: [ { position: 20, label: 'Fatura Referansı' } ]
+  @UI.lineItem: [{
+    position: 60,
+    importance: #MEDIUM,
+    label: 'Fatura referansı'
+  }]
+  Reference;
+
+  @UI.identification: [ { position: 20, label: 'Fatura Tarihi' } ]
+  @UI.lineItem: [{
+    position: 70,
+    importance: #MEDIUM,
+    label: 'Fatura Tarihi'
+  }]
+  Invoicedate;
+
+  @UI.identification: [ { position: 30, label: 'Fatura Açıklaması' } ]
+  @UI.lineItem: [{
+    position: 80,
+    importance: #MEDIUM,
+    label: 'Fatura açıklaması'
+  }]
+  Description;
+
+  @UI.identification: [ { position: 30, label: 'Fatura Beyanname' } ]
+  @UI.lineItem: [{
+    position: 90,
+    importance: #MEDIUM,
+    label: 'Fatura Beyanname'
+  }]
+  Invoicedeclaration;
+
+  @UI.identification: [ { position: 30, label: 'Akreditif Referansı' } ]
+  @UI.lineItem: [{
+    position: 100,
+    importance: #MEDIUM,
+    label: 'Akreditif Referansı'
+  }]
+  Lettercreditref;
+
+  @UI.identification: [ { position: 40, label: 'Tutar' } ]
+  @UI.lineItem: [{
+    position: 120,
+    importance: #MEDIUM,
+    label: 'Tutar'
+  }]
+  amount;
+  @UI.identification: [ { position: 50, label: 'Para Birimi' } ]
+  @UI.lineItem: [{
+    position: 130,
+    importance: #MEDIUM,
+    label: 'Para Birimi'
+  }]
+  Currency;
+  @UI.identification: [ { position: 60, label: 'Harici Alacaklı' } ]
+  @UI.lineItem: [{
+    position: 140,
+    importance: #MEDIUM,
+    label: 'Harici alacaklı'
+  }]
+  Payeenumber;
+  @UI.identification: [ { position: 70, label: 'Alacaklı İsmi' } ]
+  @UI.lineItem: [{
+    position: 150,
+    importance: #MEDIUM,
+    label: 'Alacaklı ismi'
+  }]
+  Payeename;
+
+  //  @Consumption.valueHelpDefinition: [{ entity: { name: 'I_Country', element: 'Country' } }]
+  @UI.identification: [ { position: 80, label: 'Alacaklı Ülkesi' } ]
+  @UI.lineItem: [{
+    position: 160,
+    importance: #MEDIUM,
+    label: 'Alacaklı ülkesi'
+  }]
+  Payeecountry;
+  @UI.identification: [ { position: 90, label: 'Alacaklı için VKN/TCKN' } ]
+  @UI.lineItem: [{
+    position: 170,
+    importance: #MEDIUM,
+    label: 'Alacaklı için VKN/TCKN'
+  }]
+  Payeeidentifier;
+  @UI.identification: [ { position: 100, label: 'Alacaklı için IBAN' } ]
+  @UI.lineItem: [{
+    position: 180,
+    importance: #MEDIUM,
+    label: 'Alacaklı için IBAN'
+  }]
+  Payeeiban;
+
+  @UI.identification: [ { position: 100, label: 'Alacaklı için banka ismi' } ]
+  @UI.lineItem: [{
+    position: 190,
+    importance: #MEDIUM,
+    label: 'Alacaklı için banka ismi'
+  }]
+  Payeebankname;
+
+  @UI.identification: [ { position: 110, label: 'Alacaklı için banka numarası' } ]
+  @UI.lineItem: [{
+    position: 200,
+    importance: #MEDIUM,
+    label: 'Alacaklı için banka numarası'
+  }]
+  Payeebank;
+  @UI.identification: [ { position: 120, label: 'Alacaklı için hesap numarası' } ]
+  @UI.lineItem: [{
+    position: 210,
+    importance: #MEDIUM,
+    label: 'Alacaklı için hesap numarası'
+  }]
+  Payeebankaccount;
+  @UI.identification: [ { position: 130, label: 'Alacaklı bankası için SWIFT/BIC bilgisi' } ]
+  @UI.lineItem: [{
+    position: 220,
+    importance: #MEDIUM,
+    label: 'Alacaklı bankası için SWIFT/BIC bilgisi'
+  }]
+  Payeeswift;
+  @UI.identification: [ { position: 140, label: 'Ödeme masrafı yükümlülüğü' } ]
+  @UI.lineItem: [{
+    position: 230,
+    importance: #MEDIUM,
+    label: 'Ödeme masrafı yükümlülüğü'
+  }]
+  Paymentcost;
+
+  @UI.identification: [ { position: 150, label: 'Ödeme Masrafı Yükümlülüğü Açıklaması' } ]
+  @UI.lineItem: [{
+    position: 240,
+    importance: #MEDIUM,
+    label: 'Ödeme masrafı yükümlülüğü Açıklaması'
+  }]
+  Paycostdescription;
+
+  @UI.identification: [ { position: 150, label: 'VT satırı' } ]
+  @UI.lineItem: [{
+    position: 250,
+    importance: #MEDIUM,
+    label: 'VT satırı'
+  }]
+  Roww;
+  @UI.identification: [ { position: 160, label: 'Oluşturan' } ]
+  @UI.lineItem: [{
+    position: 260,
+    importance: #MEDIUM,
+    label: 'Oluşturan'
+  }]
+  CreatedBy;
+  @UI.identification: [ { position: 170, label: 'Son Değiştiren' } ]
+  @UI.fieldGroup: [{
+    qualifier: 'Changelog',
+    label: 'Son Değiştiren',
+    position: 270
+  }]
+  LastChangedBy;
+  @UI.identification: [ { position: 180, label: 'Son Değiştirilme Tarihi' } ]
+  @UI.fieldGroup: [{
+    qualifier: 'Changelog',
+    label: 'Son Değiştirilme Tarihi',
+    position: 280
+  }]
+  LastChangedAt;
+
+  @UI.lineItem: [{ position: 200, label: 'Değiştirme tarihi' }]
+  CreatedAt;
+
+  @UI.lineItem: [{ position: 210, label: 'Ödeyen firma' }]
+  Payercompany;
+
+  @UI.lineItem: [{ position: 220, label: 'Ödeme tarihi' }]
+  Paymentdate;
+
+  @UI.identification: [ { position: 230, label: 'Status' } ]
+  @UI.lineItem: [{
+    position: 230,
+    importance: #MEDIUM,
+    label: 'Status'
+  }]
+  Status;
+  
+  
+    @UI.identification: [ { position: 30, label: 'Ödeyen Hesap' } ]
+  @UI.lineItem: [{
+    position: 30,
+    importance: #MEDIUM,
+    label: 'Ödeyen Hesap'
+  }]
+  SelectedIban;
+  
+ 
+
+  @UI.hidden: true
+
+  EtagMaster;
+
+}

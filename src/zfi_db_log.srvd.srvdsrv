@@ -1,0 +1,6 @@
+@EndUserText.label: 'Service definition'
+define service ZFI_DB_LOG {
+
+
+  expose ZFI_DF_LOG as BankLog;
+}

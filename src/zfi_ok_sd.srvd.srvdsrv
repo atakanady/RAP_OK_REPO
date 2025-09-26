@@ -1,0 +1,11 @@
+@EndUserText.label: 'Service definition'
+define service ZFI_OK_SD {
+  expose ZFI_I_HEADER_DF   as Header;
+  expose ZFI_I_ITEM_DF     as Item;
+  expose ZFI_I_DOCS        as doc;
+  expose ZI_CompanyCodeVH  as I_CompanyCodeVH;
+  expose ZFI_AUTHORIZATION as I_Authorization;
+  expose ZFI_PYMBATCH_BANK as PYMBATCH_Bank;
+  expose ZFI_PYMBATCH_LINE as PYMBATCH_Line;
+  expose ZFI_D_SWIFT       as Swift;
+}

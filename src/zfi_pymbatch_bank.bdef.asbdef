@@ -1,0 +1,91 @@
+managed implementation in class zbp_fi_pymbatch_bank unique;
+strict ( 2 );
+
+define behavior for ZFI_PYMBATCH_BANK
+persistent table zfi_pymbtch_bank
+early numbering
+lock master
+
+authorization master ( instance )
+{
+  create ( features : global );
+  update ( features : instance );
+  delete ( features : instance );
+  field ( readonly ) Paymentbatch;
+
+  determination onCreate on save { create; }
+  field ( readonly : update )
+  Bankaccountinternalid,
+  Companycode,
+  BankControlKey,
+  IBAN,
+  BankAccountDescription,
+  BankAccountCurrency,
+  BankAccount,
+  BankName,
+  Paymenttype,
+  sSelectedDate,
+  BankInternalID,
+  Housebank,
+  Housebankaccount,
+  Statusx,
+  Status;
+
+  action ( features : instance ) active result [1] $self;
+  action ( features : instance ) unActive result [1] $self;
+  validation vpaymentbatch on save { field Paymentbatch; create; }
+
+  mapping for zfi_pymbtch_bank corresponding
+    {
+      Paymentbatch          = paymentbatch;
+      Companycode           = companycode;
+      Housebank             = housebank;
+      Housebankaccount      = housebankaccount;
+      BankControlKey        = bankcontrolkey;
+      Bankaccountinternalid = bankaccountinternalid;
+      Status                = status;
+      TotalItem             = totalitem;
+      TotalAmount           = totalamount;
+      PaymentdatePb         = paymentdatepb;
+      IBAN                  = iban;
+      BankName              = bankname;
+      Paymenttype           = paymenttype;
+      sSelectedDate         = selectdate;
+      BankInternalID        = bankinternalid;
+      DocumentNo            = documentno;
+      PZMessage             = pzmessage;
+    }
+
+  association _Line { create ( features : instance ); }
+}
+
+define behavior for ZFI_PYMBATCH_LINE //alias <alias_name>
+persistent table zfi_pymbtch_line
+lock dependent by _Parent
+authorization dependent by _Parent
+{
+
+  update ( features : instance );
+  delete ( features : instance );
+  field ( readonly ) Paymentbatch;
+
+  field ( readonly : update ) Paymentorder, Currency, Paymentline,
+  Description, Invoicedate, Invoicedeclaration,
+  Lettercreditref, Paycostdescription, Payeebank,
+  Reference, Payeenumber, Payeename, Payeecountry, Payeeidentifier, Payeebankname,
+  Payeeiban, Payeebankaccount, Payeeswift, Paymentcost, Roww, Payercompany, Payercompanyname, Paymentdate, Amount, Paymenttype;
+
+
+  determination updateStatus on modify { create; }
+  mapping for zfi_pymbtch_line corresponding
+    {
+      Paymentbatch     = paymentbatch;
+      Paymentline      = paymentline;
+      Paymentorder     = paymentorder;
+      StatusValidation = status;
+      StatusDesc       = statusdesc;
+    }
+
+
+  association _Parent;
+}

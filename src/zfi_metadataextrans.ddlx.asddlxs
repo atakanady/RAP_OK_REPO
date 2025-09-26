@@ -1,0 +1,194 @@
+@Metadata.layer:#CORE
+@UI: {
+    headerInfo: {
+    typeName: 'Ödeme Paketi Bilgileri',
+    typeNamePlural: '',
+    title: { type: #STANDARD, value: 'Paymentbatch', label: 'Ödeme Paketi' }
+    }
+}
+
+
+annotate entity ZFI_PYBATCH_TRANS with
+{
+
+
+  @UI.facet: [{
+            id: 'TEST',
+            purpose: #STANDARD,
+            label: 'Bilgiler',
+            type: #IDENTIFICATION_REFERENCE,
+            position: 10
+        }
+        ,
+               {
+               purpose: #STANDARD,
+               id: 'ZFI_I_ITEM_DF',
+               type: #LINEITEM_REFERENCE,
+               targetElement: '_Line',
+               position: 10
+               }
+
+        ]
+
+
+  @UI.lineItem: [{ position: 10, importance: #HIGH, label: 'Ödeme Paketi' }]
+  @UI.selectionField: [{ position: 10 ,element: 'Paymentbatch'}]
+  @UI.identification:[ { position: 10, label: 'Ödeme Paketi'
+   }]
+
+  @EndUserText.label: 'Ödeme Paketi'
+  Paymentbatch;
+
+  @UI: {
+  lineItem: [ { position: 20, label: 'Şirket kodu'} ],
+  selectionField: [ { position: 20 } ],
+  identification:[ { position: 20, label: 'Şirket kodu' } ]}
+  @EndUserText.label: 'Şirket kodu'
+  Companycode;
+
+  @UI: {
+  lineItem: [ { position: 210, label: 'Banka Teknik Numarası'} ],
+  selectionField: [ { position: 210 } ],
+  identification:[ { position: 210, label: 'Banka Teknik Numarası' } ]}
+  @EndUserText.label: 'Banka Teknik Numarası'
+  Bankaccountinternalid;
+
+  @UI: {
+  lineItem: [ { position: 130, label: 'Ana Banka Hesabı' } ],
+  selectionField: [ { position: 130 } ],
+  identification:[ { position: 130, label: 'Ana Banka Hesabı' } ]}
+  @EndUserText.label: 'Ana Banka Hesabı'
+  Housebankaccount;
+
+  @UI: {
+  lineItem: [ { position: 140, label: 'Ana Banka' } ],
+  selectionField: [ { position: 140 } ],
+  identification:[ { position: 140, label: 'Ana Banka' } ]}
+  @EndUserText.label: 'Ana Banka'
+  Housebank;
+
+  @UI: { selectionField: [ { position: 60 } ] }
+  @EndUserText.label: 'Tayin Durumu'
+  Status;
+  @EndUserText.label: 'Banka kontrol kodu'
+  BankControlKey;
+
+
+  @EndUserText.label: 'Durum'
+  Statusx;
+
+
+  @UI: {
+  lineItem: [ { position: 70, label: 'Toplam Kalem' } ],
+  selectionField: [ { position: 70 } ]
+//  identification:[ { position: 130, label: 'Toplam Kalem' } ]
+  }
+  @EndUserText.label: 'Toplam Kalem'
+  TotalItem;
+
+  @UI: {
+  lineItem: [ { position: 80, label: 'Toplam Tutar' } ],
+  selectionField: [ { position: 80 } ]
+//  identification:[ { position: 140, label: 'Toplam Tutar' } ]
+  }
+  @EndUserText.label: 'Toplam Tutar'
+  TotalAmount;
+
+
+  @UI: {
+  lineItem: [ { position: 90, label: 'Gönderen IBAN'} ],
+  selectionField: [ { position: 90 } ],
+  identification:[ { position: 90, label: 'Gönderen IBAN' } ]}
+  @EndUserText.label: 'Gönderen IBAN'
+  IBAN;
+
+
+  @UI: {
+  lineItem: [ { position: 100, label: 'Ödeme Tipi' } ],
+  selectionField: [ { position: 100 } ],
+  identification:[ { position: 100, label: 'Ödeme Tipi' } ]}
+  @EndUserText.label: 'Ödeme Tipi'
+  Paymenttype;
+
+
+  @UI: {
+  lineItem: [ { position: 110, label: 'Ödeme Tarihi'} ],
+  selectionField: [ { position: 110 } ],
+  identification:[ { position: 110, label: 'Ödeme Tarihi' } ]}
+  @EndUserText.label: 'Ödeme Tarihi'
+  sSelectedDate;
+
+
+  @UI: {
+  lineItem: [ { position: 120, label: 'Banka Tanıtıcısı' } ],
+  selectionField: [ { position: 120 } ],
+  identification:[ { position: 120, label: 'Banka Tanıtıcısı' } ]
+  }
+  @EndUserText.label: 'Banka Tanıtıcısı'
+  BankInternalID;
+
+
+  @UI: {
+  lineItem: [ { position: 40, label: 'Para Birimi'} ],
+  selectionField: [ { position: 40 } ],
+  identification:[ { position: 40, label: 'Para Birimi' } ]}
+  @EndUserText.label: 'Para Birimi'
+  BankAccountCurrency;
+
+
+  @UI: {
+  lineItem: [ { position: 50, label: 'Banka Adı' } ],
+  selectionField: [ { position: 50 } ],
+  identification:[ { position: 50, label: 'Banka Adı' } ]}
+  @EndUserText.label: 'Banka Adı'
+  BankName;
+
+
+  @UI: {
+  lineItem: [ { position: 150, label: 'Hesap Numarası' } ],
+  selectionField: [ { position: 150 } ],
+  identification:[ { position: 150, label: 'Hesap Numarası' } ]}
+  @EndUserText.label: 'Hesap Numarası'
+  BankAccount;
+
+  @UI: {
+  lineItem: [ { position: 160, label: 'Hesap Tanımı' } ],
+  selectionField: [ { position: 160 } ],
+  identification:[ { position: 160, label: 'Hesap Tanımı' } ]}
+  @EndUserText.label: 'Hesap Tanımı'
+  BankAccountDescription;
+
+  @UI: {
+  lineItem: [ { position: 170, label: 'Doküman No' } ],
+  selectionField: [ { position: 170 } ]
+//  identification:[ { position: 80, label: 'Doküman No ' } ]
+  }
+  @EndUserText.label: 'Doküman No '
+  DocumentNo;
+
+
+  @UI: {
+  lineItem: [ { position: 180, label: 'Paperzero Mesaj' } ],
+  selectionField: [ { position: 180 } ]
+//  identification:[ { position: 90, label: 'Paperzero Mesaj' } ]
+}
+  @EndUserText.label: 'Paperzero Mesaj'
+  PZMessage;
+  
+    @UI: {
+  lineItem: [ { position: 190, label: 'Ödeyen Firma Adı' } ],
+  selectionField: [ { position: 190 } ],
+  identification:[ { position: 190, label: 'Ödeyen Firma Adı' } ]
+}
+  @EndUserText.label: 'Ödeyen Firma Adı'
+  CompanyCodeName;
+  
+      @UI: {
+  lineItem: [ { position: 200, label: 'Swift' } ],
+  selectionField: [ { position: 200 } ],
+  identification:[ { position: 200, label: 'Swift' } ]
+}
+  @EndUserText.label: 'Swift'
+  SWIFTCode;
+
+}

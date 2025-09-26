@@ -1,0 +1,19 @@
+@EndUserText.label: 'Ödeme Paketlerini Aktar'
+define service ZFI_PYTRANS_SD {
+  expose ZFI_PYBATCH_TRANS           as PYBATCH_TRANSFER;
+  expose ZFI_PYBATCH_TRANSLINE       as PYBATCH_TRANSLINE;
+  expose ZFI_PYBATCH_TRANSITEM       as PYBATCH_TRANSITEM;
+  expose ZFI_I_Bank_2                as I_Bank_2;
+  expose ZFI_I_HouseBankAccountStdVH as I_HouseBankAccountLinkage;
+  expose ZFI_I_RegionText            as I_RegionText;
+  expose ZFI_DF_LOG                  as BankLog;
+  expose ZFI_I_STAMP                 as I_Stamp;
+  expose ZFI_DF_TOS                  as TOS;
+  expose ZFI_DF_MESSAGEID            as MessageID;
+  expose ZFI_DF_TXT                  as TXT;
+  expose ZFI_PYMBATCH_BANK           as PYMBATCH_Bank;
+  expose ZFI_I_ITEM_DF               as ITEM;
+  expose ZFI_I_HEADER_RO             as Header;
+  expose ZFI_I_DOCS                  as Doc;
+  expose ZFI_I_MASRAFTOS             as MasrafTos;
+}

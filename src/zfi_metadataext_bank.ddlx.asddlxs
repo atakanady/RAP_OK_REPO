@@ -1,0 +1,180 @@
+@Metadata.layer:#CORE
+@UI: {
+    headerInfo: {
+    typeName: 'Ödeme Paketi Bilgileri',
+    typeNamePlural: '',
+    title: { type: #STANDARD, value: 'Paymentbatch', label: 'Ödeme Paketi' }
+    }
+}
+
+
+annotate entity ZFI_PYMBATCH_BANK with
+{
+
+
+
+
+
+
+  @UI.facet: [{
+            id: 'TEST',
+            purpose: #STANDARD,
+            label: 'Bilgiler',
+            type: #IDENTIFICATION_REFERENCE,
+            position: 10
+        },
+               {
+               purpose: #STANDARD,
+               id: 'ZFI_I_ITEM_DF',
+               type: #LINEITEM_REFERENCE,
+               targetElement: '_Line',
+               position: 20
+               }
+
+        ]
+
+
+  @UI.lineItem: [{ position: 10, importance: #HIGH, label: 'Ödeme Paketi' }]
+  @UI.selectionField: [{ position: 10 ,element: 'Paymentbatch'}]
+  @UI.identification:[ { position: 10, label: 'Ödeme Paketi' }]
+  @EndUserText.label: 'Ödeme Paketi'
+  Paymentbatch;
+
+
+  @UI: {
+  lineItem: [ { position: 20, label: 'Banka hesap tanıtıcısı' } ],
+  selectionField: [ { position: 20 } ],
+  identification:[ { position: 20, label: 'Banka hesap tanıtıcısı' }
+   ]
+  }
+  @EndUserText.label: 'Banka hesap tanıtıcısı'
+  @Consumption.valueHelpDefinition: [{ entity: { name: 'ZFI_I_HouseBankAccountStdVH', element: 'BankAccountInternalID' },
+           additionalBinding: [
+                               { localElement: 'Companycode', element: 'CompanyCode' },
+                               { localElement: 'IBAN', element: 'IBAN' },
+                               { localElement: 'BankControlKey', element: 'BankControlKey'},
+                               { localElement: 'BankControlKey', element: 'BankControlKey'},
+                               { localElement: 'BankAccountCurrency', element: 'BankAccountCurrency'},
+                               { localElement: 'BankAccountDescription', element: 'BankAccountDescription'},
+                               { localElement: 'BankAccount', element: 'BankAccount'},
+                               { localElement: 'BankName', element: 'BankName'},
+                               { localElement: 'Paymenttype', element: 'Paymenttype'}
+
+
+                               ]
+                               }]
+                               
+  Bankaccountinternalid;
+
+  @UI: {
+  lineItem: [ { position: 30, label: 'Şirket kodu' } ],
+  selectionField: [ { position: 30 } ],
+  identification:[ { position: 30, label: 'Şirket kodu' } ]}
+  @EndUserText.label: 'Şirket kodu'
+  Companycode;
+  
+  @EndUserText.label: 'Banka kontrol kodu'
+  BankControlKey;
+
+  @UI: {
+  lineItem: [ { position: 50, label: 'IBAN' } ],
+  selectionField: [ { position: 60 } ],
+  identification:[ { position: 60, label: 'IBAN' } ]}
+  @EndUserText.label: 'IBAN'
+  IBAN;
+
+  @UI: {
+  lineItem: [ { position: 60, label: 'Hesap Tanımı'} ],
+  selectionField: [ { position: 70 } ],
+  identification:[ { position: 70, label: 'Hesap Tanımı' } ]}
+  @EndUserText.label: 'Hesap Tanımı'
+  BankAccountDescription;
+
+  @UI: {
+  lineItem: [ { position: 70, label: 'Para Birimi'} ],
+  selectionField: [ { position: 80 } ],
+  identification:[ { position: 80, label: 'Para Birimi' } ]}
+  @EndUserText.label: 'Para Birimi'
+  BankAccountCurrency;
+
+
+  @UI: {
+  lineItem: [ { position: 80, label: 'Hesap Numarası'} ],
+  selectionField: [ { position: 90 } ],
+  identification:[ { position: 90, label: 'Hesap Numarası' } ]}
+  @EndUserText.label: 'Hesap Numarası'
+  BankAccount;
+
+
+  @UI: {
+  lineItem: [ { position: 90, label: 'Banka Adı' } ],
+  selectionField: [ { position: 100 } ],
+  identification:[ { position: 100, label: 'Banka Adı' } ]}
+  @EndUserText.label: 'Banka Adı'
+  BankName;
+
+
+  @UI: {
+  lineItem: [ { position: 100, label: 'Ödeme Tipi'} ],
+  selectionField: [ { position: 110 } ],
+  identification:[ { position: 110, label: 'Ödeme Tipi' } ]}
+  @EndUserText.label: 'Ödeme Tipi'
+  Paymenttype;
+
+
+    @UI: {
+    lineItem: [ { position: 110, label: 'Ödeme Tarihi' } ],
+    selectionField: [ { position: 120 } ],
+    identification:[ { position: 120, label: 'Ödeme Tarihi' } ]}
+    @EndUserText.label: 'Ödeme Tarihi'
+    sSelectedDate;
+
+  @UI: {
+  lineItem: [ { position: 120, label: 'Toplam Kalem' } ],
+  selectionField: [ { position: 130 } ],
+  identification:[ { position: 130, label: 'Toplam Kalem' } ]}
+  @EndUserText.label: 'Toplam Kalem'
+  TotalItem;
+
+  @UI: {
+  lineItem: [ { position: 130, label: 'Toplam Tutar'} ],
+  selectionField: [ { position: 140 } ],
+  identification:[ { position: 140, label: 'Toplam Tutar' } ]}
+  @EndUserText.label: 'Toplam Tutar'
+  TotalAmount;
+
+  @UI: {
+  lineItem: [ { position: 140, label: 'Banka Tanıtıcısı' } ],
+  selectionField: [ { position: 150 } ],
+  identification:[ { position: 150, label: 'Banka Tanıtıcısı' } ]}
+  @EndUserText.label: 'Banka Tanıtıcısı'
+  BankInternalID;
+  
+  
+  @UI: {
+  lineItem: [ { position: 150, label: 'Ana Banka'} ],
+  selectionField: [ { position: 160 } ],
+  identification:[ { position: 160, label: 'Ana Banka' } ]}
+  @EndUserText.label: 'Ana Banka'
+  Housebank;
+  
+
+  @UI: {
+  lineItem: [ { position: 150, label: 'Ana Banka Hesabı' } ],
+  selectionField: [ { position: 160 } ],
+  identification:[ { position: 160, label: 'Ana Banka Hesabı' } ]}
+  @EndUserText.label: 'Ana Banka Hesabı'
+  Housebankaccount;
+
+  @UI: {
+  identification: [ { type: #FOR_ACTION, dataAction: 'active', label: 'Etkinleştir' },
+                   { type: #FOR_ACTION, dataAction: 'unActive', label: 'Etkinliği Kaldır' } ] }
+  @EndUserText.label: 'Durum'
+  Statusx;
+
+
+  @UI: { selectionField: [ { position: 40 } ] }
+  @EndUserText.label: 'Tayin Durumu'
+  Status;
+
+}

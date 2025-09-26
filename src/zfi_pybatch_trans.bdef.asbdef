@@ -1,0 +1,83 @@
+managed implementation in class zbp_fi_pybatch_trans unique;
+strict ( 2 );
+//with draft;
+
+define behavior for ZFI_PYBATCH_TRANS
+persistent table zfi_pymbtch_bank
+lock master
+authorization master ( instance )
+{
+  update ( features : instance );
+  field ( readonly ) Paymentbatch;
+
+  field ( readonly : update )
+  Bankaccountinternalid,
+  Companycode,
+  BankControlKey,
+  IBAN,
+  BankAccountDescription,
+  BankAccountCurrency,
+  BankAccount,
+  BankName,
+  Paymenttype,
+  sSelectedDate,
+  BankInternalID,
+  Housebank,
+  Housebankaccount,
+  Statusx,
+  Status;
+
+
+  determination onCreate on save { create; }
+
+  mapping for zfi_pymbtch_bank corresponding
+    {
+      Paymentbatch          = paymentbatch;
+      Companycode           = companycode;
+      Housebank             = housebank;
+      Housebankaccount      = housebankaccount;
+      BankControlKey        = bankcontrolkey;
+      Bankaccountinternalid = bankaccountinternalid;
+      Status                = status;
+      TotalItem             = totalitem;
+      TotalAmount           = totalamount;
+      Paymentdatepb         = paymentdatepb;
+      IBAN                  = iban;
+      BankName              = bankname;
+      Paymenttype           = paymenttype;
+      sSelectedDate         = selectdate;
+      BankInternalID        = bankinternalid;
+      DocumentNo            = documentno;
+      PZMessage             = pzmessage;
+    }
+
+  association _Line { create; } // Define association to child lines
+}
+
+
+define behavior for ZFI_PYBATCH_TRANSLINE
+persistent table zfi_pymbtch_line
+lock dependent by _Parent
+authorization dependent by _Parent
+{
+  update;
+  //  delete;
+  field ( readonly ) Paymentbatch;
+
+  field ( readonly : update ) Paymentorder, Currency, Paymentline,
+  Description, Invoicedate, Invoicedeclaration,
+  Lettercreditref, Paycostdescription, Payeebank,
+  Reference, Payeenumber, Payeename, Payeecountry, Payeeidentifier, Payeebankname,
+  Payeeiban, Payeebankaccount, Payeeswift, Paymentcost, Roww, Payercompany, Payercompanyname, Paymentdate, Amount, Paymenttype;
+
+  mapping for zfi_pymbtch_line corresponding
+    {
+      Paymentbatch     = paymentbatch;
+      Paymentline      = paymentline;
+      Paymentorder     = paymentorder;
+      StatusValidation = status;
+      StatusDesc       = statusdesc;
+    }
+
+  association _Parent;
+}

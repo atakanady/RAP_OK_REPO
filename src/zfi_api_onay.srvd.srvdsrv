@@ -1,0 +1,4 @@
+@EndUserText.label: 'Service definition for API Onay Dosyası'
+define service ZFI_API_ONAY {
+  expose ZFI_I_ONAYDOS as OnayDosya;
+}

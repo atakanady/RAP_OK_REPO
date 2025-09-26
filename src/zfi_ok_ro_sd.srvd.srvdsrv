@@ -1,0 +1,6 @@
+@EndUserText.label: 'Read only'
+define service ZFI_OK_RO_SD {
+  expose ZFI_I_HEADER_RO as Header;
+  expose ZFI_I_ITEM_RO   as Item;
+  expose ZFI_I_DOCS      as doc;
+}

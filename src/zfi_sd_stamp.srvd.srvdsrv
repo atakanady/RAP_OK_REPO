@@ -1,0 +1,4 @@
+@EndUserText.label: 'Service Definitions for Company Stamp'
+define service ZFI_SD_STAMP {
+  expose ZFI_I_STAMP as I_Stamp;
+}
